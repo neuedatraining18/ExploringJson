@@ -1,12 +1,31 @@
+import java.math.BigDecimal;
+
 public class Book {
     private int id;
     private String author;
     private String title;
+    private BigDecimal price;
 
     public Book(int id, String author, String title) {
         this.id = id;
         this.author = author;
         this.title = title;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getPriceWithSalesTax() {
+        if(price.compareTo(BigDecimal.ZERO)<0)
+        {
+            throw new NumberFormatException();
+        }
+        return price.multiply(new BigDecimal("1.06"));
     }
 
     public int getId() {
