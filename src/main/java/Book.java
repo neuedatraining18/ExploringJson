@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Book {
     private int id;
@@ -50,5 +51,28 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(price, book.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, author, title, price);
     }
 }
